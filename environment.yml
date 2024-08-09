@@ -1,0 +1,19 @@
+name: pyg
+channels:
+  - pyg
+  - pytorch
+  - defaults
+dependencies:
+  - pyg=2.2.0
+  - jupyter
+  - matplotlib
+  - networkx
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - tqdm
+  - numba
+  - pip
+  - pip:
+    - ogb
