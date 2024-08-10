@@ -106,8 +106,8 @@ parser.add_argument('--num_layers', type=int, default=2)
 parser.add_argument('--hidden_channels', type=int, default=64)
 parser.add_argument('--dropout', type=float, default=0.5)
 parser.add_argument('--lr', type=float, default=0.01)
-parser.add_argument('--wd', type=float, default=0.0)
-parser.add_argument('--use_sage', action='store_true')
+parser.add_argument('--wd', type=float, default=5e-4)
+parser.add_argument('--use_sage', action='store_false')
 parser.add_argument('--use_gcn', action='store_true')
 parser.add_argument('--use_bn', action='store_true')
 
@@ -188,9 +188,11 @@ for num_train_per_class in num_train_per_class_list:
 if nr_rsts > 0:
     print(f"Building {nr_rsts} RSTs")
     if dataset in ["yelp", "reddit2", "ogbn-arxiv", "ogbn-mag", "aminer"]:
-        rstu.build_rsts_parallel(data, nr_rsts)
+        # rstu.build_rsts_parallel(data, nr_rsts)
+        rstu.build_rsts(data, nr_rsts)
     else:
-        rstu.build_rsts_parallel(data, nr_rsts, cached=False)
+        # rstu.build_rsts_parallel(data, nr_rsts, cached=False)
+        rstu.build_rsts(data, nr_rsts)
 
 def run_experiments(experiment, split):
     experimental_data = []

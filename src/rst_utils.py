@@ -8,7 +8,10 @@ import torch
 import torch_geometric as tg
 import tqdm
 import utils
-import rst
+try:
+    import rst
+except:
+    import pyrst as rst
 from scipy import sparse
 
 def edge_index_from_rpg(rpg, device):

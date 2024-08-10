@@ -1,4 +1,4 @@
-name: pyg
+name: gern
 channels:
   - pyg
   - pytorch
