@@ -93,6 +93,10 @@ def build_rst(seed):
     utils.set_seed(seed)
     rpg = np.array(utils.sp_depth_first_search(
         cstree.shape[0], cstree.indptr, cstree.indices))
+    
+    assert rpg.shape[0] == csgraph.shape[0], \
+            f"RPG has wrong size: {rpg.shape[0]} != {csgraph.shape[0]}"
+
     return tree, rpg
 
 class BuildRstCached():

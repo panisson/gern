@@ -30,10 +30,7 @@ def _wilson_rst(N: int, indices, indptr, rst, unvisited_flag):
     
     visit_order = np.arange(N)
     np.random.shuffle(visit_order)
-    first_vtx = visit_order[0]
-    unvisited_flag[first_vtx] = 0
-    num_visited += 1
-    visited_idx = 1
+    visited_idx = 0
 
     while num_visited < N:
         start_vtx = visit_order[visited_idx]
@@ -76,8 +73,9 @@ def wilson_random_spanning_tree(csgraph, seed=-1):
     N = csgraph.shape[0]
 
     unvisited_flag = np.ones(N, dtype=bool)
-    tree = []
-    tree = _wilson_rst(N, indices, indptr, tree, unvisited_flag)
+    first_vtx =  np.random.randint(N)
+    unvisited_flag[first_vtx] = 0
+    tree = _wilson_rst(N, indices, indptr, [], unvisited_flag)
     return np.array(tree).T
 
 def rw_random_spanning_tree(csgraph, seed=-1):

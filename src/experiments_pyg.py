@@ -369,7 +369,8 @@ class RPG(PygExperiment):
             
             subset, edge_index_subgraph, index_map, edge_mask = k_hop_subgraph(
                 Q, num_hops=num_hops, 
-                edge_index=edge_index_rpg, relabel_nodes=True)
+                edge_index=edge_index_rpg, num_nodes=data.num_nodes,
+                relabel_nodes=True)
             x = data.x[subset]
             loss = F.nll_loss(model(x, edge_index_subgraph)[index_map], data.y[Q])
         
