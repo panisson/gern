@@ -7,6 +7,7 @@ GERN is a framework designed to improve the training of Graph Neural Networks (G
 - [GERN: Graph Effective Resistance Networks](#gern-graph-effective-resistance-networks)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
+  - [Python Requirements](#python-requirements)
   - [Datasets](#datasets)
     - [Running Experiments](#running-experiments)
       - [Basic Usage](#basic-usage)
@@ -26,7 +27,18 @@ To get started with GERN, follow these steps:
    cd gern
    ```
 
-2. **Set up a virtual environment (optional but recommended):**
+## Python Requirements
+
+The following Python libraries are required to run GERN:
+
+- **[PyTorch Geometric (pyg)](https://pytorch-geometric.readthedocs.io/):** The main library used for graph-based deep learning. It requires PyTorch, which will be installed as a dependency.
+- **Jupyter:** To run and interact with notebooks.
+- **Matplotlib:** For creating plots and visualizations.
+- **NumPy, Pandas, SciPy, Scikit-learn**
+- **TQDM:** For displaying progress bars when running experiments.
+- **[Open Graph Benchmark (ogb)](https://ogb.stanford.edu/):** For loading and working with larger graph datasets like OGBN-arXiv and OGBN-Products.
+  
+**Set up a Conda virtual environment (optional but recommended):**
 
 To install the environment and use the Jupyter notebooks, run (assuming you already have `conda` and `ipykernel` installed):
 
@@ -67,7 +79,7 @@ python src/main.py -d cora -e rpg --split percentage --train_size 0.01
 
 - **-h, --help**: Show the help message and exit.
 - **-r, --nr_runs**: Number of runs for the experiment (default: 1).
-- **--start_seed**: Seed for random number generation to ensure reproducibility.
+- **--start_seed**: Seed for random number generation to ensure reproducibility (default: 0).
 - **-d, --dataset**: Specify the dataset to use. Options include:
   - `cora`
   - `pubmed`
@@ -116,22 +128,16 @@ python src/main.py -d cora -e rpg --split percentage --train_size 0.01
 **Run GERN on the Cora dataset with 20 nodes per class:**
 
    ```bash
-   python src/main.py -d cora -e rpg --nr_rsts 250 --split planetoid --num_train_per_class 20 --use_gcn --wd 5e-4 --start_seed 0 --num_layers 2 --hidden_channels 64 --nr_runs 100
-   ```
-
-**Run multiple experiments with 100 runs and a custom seed:**
-
-   ```bash
-   python main.py -d ogbn-arxiv -e rpg -r 10 --start_seed 42
+   python src/main.py -d cora -e rpg --nr_rsts 250 --split planetoid --num_train_per_class 20 --use_gcn --wd 5e-4 --start_seed 0 --num_layers 2 --hidden_channels 64 --nr_runs 100 --start_seed 0
    ```
 
 **Run an experiment with a small training set (1% of the dataset) on OGBN-Products:**
 
    ```bash
-   python main.py -d ogbn-products -e rpg --train_size 0.01
+   python main.py -d ogbn-products -e rpg --split percentage --train_size 0.01
    ```
 
-All experiment results, including performance metrics, will be saved in the specified output directory or the default location if not specified.
+All experiment results, including performance metrics, will be saved in the specified output directory or the default location (`data/results`) if not specified.
 
 For more detailed information on each parameter and its usage, refer to the help command:
 
