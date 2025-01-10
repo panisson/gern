@@ -134,7 +134,7 @@ python src/main.py -d cora -e rpg --split percentage --train_size 0.01
 **Run an experiment with a small training set (1% of the dataset) on OGBN-Products:**
 
    ```bash
-   python main.py -d ogbn-products -e rpg --split percentage --train_size 0.01
+   python src/main.py -d ogbn-products -e rpg --split percentage --train_size 0.01
    ```
 
 All experiment results, including performance metrics, will be saved in the specified output directory or the default location (`data/results`) if not specified.
@@ -142,14 +142,18 @@ All experiment results, including performance metrics, will be saved in the spec
 For more detailed information on each parameter and its usage, refer to the help command:
 
 ```bash
-python main.py -h
+python src/main.py -h
 ```
 
 ## Citation
 
 If you use GERN in your research, please cite the following paper:
 
-> Francesco Bonchi, Claudio Gentile, Francesco Paolo Nerini, André Panisson, and Fabio Vitale. 2025. Fast and Effective GNN Training through Sequences of Random Path Graphs. In Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD '25), August 3–7, 2025, Toronto, ON, Canada. ACM, New York, NY, USA, 13 pages.
+> Francesco Bonchi, Claudio Gentile, Francesco Paolo Nerini, André Panisson, and Fabio Vitale. 2025. Fast and Effective GNN Training through Sequences of Random Path Graphs. In Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD '25), August 3–7, 2025, Toronto, ON, Canada. ACM, New York, NY, USA, 12 pages.
+
+ArXiv extended paper:
+
+> Bonchi, Francesco, Claudio Gentile, Francesco Paolo Nerini, André Panisson, and Fabio Vitale. Fast and Effective GNN Training with Linearized Random Spanning Trees. arXiv preprint arXiv:2306.04828. https://arxiv.org/abs/2306.04828 
 
 ## License
 
