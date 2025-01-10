@@ -149,9 +149,7 @@ python main.py -h
 
 If you use GERN in your research, please cite the following paper:
 
-```
-Francesco Bonchi, Claudio Gentile, Francesco Paolo Nerini, André Panisson, and Fabio Vitale. 2025. Fast and Effective GNN Training through Sequences of Random Path Graphs. In Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD '25), August 3–7, 2025, Toronto, ON, Canada. ACM, New York, NY, USA, 13 pages.
-```
+> Francesco Bonchi, Claudio Gentile, Francesco Paolo Nerini, André Panisson, and Fabio Vitale. 2025. Fast and Effective GNN Training through Sequences of Random Path Graphs. In Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1 (KDD '25), August 3–7, 2025, Toronto, ON, Canada. ACM, New York, NY, USA, 13 pages.
 
 ## License
 
