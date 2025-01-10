@@ -233,3 +233,48 @@ def train_test_split(N, rate=0.1, seed=0):
     test_mask[Q] = 0
     
     return Q, train_mask, test_mask
+
+def load_ogbn_products():
+    from ogb.nodeproppred import PygNodePropPredDataset
+
+    absolute_path = os.path.dirname(__file__)
+    root_path = f"{absolute_path}/dataset"
+    dataset = PygNodePropPredDataset(name='ogbn-products',
+                    transform=T.ToUndirected(), root=root_path)
+
+    data = dataset[0]
+
+    split_idx = dataset.get_idx_split()
+    train_mask = torch.zeros(data.x.shape[0], dtype=torch.bool)
+    val_mask = torch.zeros(data.x.shape[0], dtype=torch.bool)
+    test_mask = torch.zeros(data.x.shape[0], dtype=torch.bool)
+    train_mask[split_idx['train']] = True
+    val_mask[split_idx['valid']] = True
+    test_mask[split_idx['test']] = True
+    data.train_mask, data.val_mask, data.test_mask = (
+        train_mask, val_mask, test_mask
+    )
+
+    post_transform = T.Compose([
+        T.RemoveIsolatedNodes(),
+        T.LargestConnectedComponents(),
+    ]) 
+    data = post_transform(data)
+
+    edge_index, _ = tgu.remove_self_loops(data.edge_index)
+    data.edge_index = edge_index
+    data = T.ToSparseTensor()(data)
+    data.edge_index = edge_index
+    data.num_classes = dataset.num_classes
+    data.y = data.y.squeeze(1)
+    data.dataset_name = "ogbn-products"
+
+    # data.adj_t = tg.typing.SparseTensor(row=data.edge_index[0], col=data.edge_index[1])
+
+    # load edge resistance
+    edge_resistance_path = f'{root_path}/ogbn_products/ogbn_products_edge_resistance.npz'
+    if os.path.exists(edge_resistance_path):
+        edge_resistance = np.load(edge_resistance_path)['edge_resistance']
+        data.edge_resistance = torch.tensor(edge_resistance, dtype=torch.float32)
+
+    return data

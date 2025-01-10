@@ -4,7 +4,7 @@ channels:
   - pytorch
   - defaults
 dependencies:
-  - pyg=2.2.0
+  - pyg
   - jupyter
   - matplotlib
   - networkx
