@@ -1,5 +1,8 @@
 # GERN: Graph Effective Resistance Networks
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14629731.svg)](https://doi.org/10.5281/zenodo.14629731)
+
+
 GERN is a framework designed to improve the training of Graph Neural Networks (GNNs) by addressing common issues such as over-squashing and over-smoothing. GERN leverages the concept of effective resistance to generate Random Spanning Trees (RSTs) and Random Path Graphs (RPGs), enabling more efficient and scalable GNN training, particularly in small training set regimes.
 
 ## Table of Contents
